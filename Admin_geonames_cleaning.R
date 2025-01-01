@@ -18,8 +18,10 @@ if (!"Country" %in% names(Admin)) {
 }
 
 Admin <- Admin %>%
-  mutate(Province =toupper(Province),
-         District =toupper(District)) |> 
+  mutate(
+    Country =toupper(Country),
+    Province =toupper(Province),
+    District =toupper(District))|> 
   mutate(
     Country = case_when(
       Country == "GAM" ~ "GAMBIA",
@@ -5479,6 +5481,53 @@ Admin <- Admin %>%
         Province	== "ITURI" &	District	== "LINGA" ~	"ITURI",
       Country	== "DEMOCRATIC REPUBLIC OF THE CONGO" &
         Province	== "NORD KIVU" &	District	== "KIBIRIZI" ~	"NORD KIVU",
-      TRUE ~ Province))
+      TRUE ~ Province),
+    AFRO_block = case_when(
+      Country	=="NIGERIA" ~	"LCB",
+      Country	=="NIGER" ~	"LCB",
+      Country	=="CAMEROON" ~	"LCB", 
+      Country	=="CHAD" ~	"LCB",
+      Country	=="CENTRAL AFRICAN REPUBLIC" ~	"LCB",
+      Country	=="ALGERIA" ~	"WA",
+      Country	=="BURKINA FASO" ~	"WA",
+      Country	=="MAURITANIA" ~	"WA",
+      Country	=="MALI" ~	"WA",
+      Country	=="GUINEA" ~	"WA",
+      Country	=="GHANA" ~	"WA",
+      Country	=="TOGO" ~	"WA",
+      Country	=="BENIN" ~	"WA",
+      Country	=="COTE D IVOIRE" ~	"WA",
+      Country	=="SIERRA LEONE" ~	"WA",
+      Country	=="LIBERIA" ~	"WA",
+      Country	=="GUINEA-BISSAU" ~	"WA",
+      Country	=="GAMBIA" ~	"WA",
+      Country	=="SENEGAL" ~	"WA",
+      Country	=="DEMOCRATIC REPUBLIC OF THE CONGO" ~	"CEA",
+      Country	=="CONGO" ~	"CEA",
+      Country	=="GABON" ~	"CEA",
+      Country	=="EQUATORIAL GUINEA" ~	"CEA",
+      Country	=="RWANDA" ~	"CEA",
+      Country	=="BURUNDI" ~	"CEA",
+      Country	=="ANGOLA" ~	"CEA",
+      Country	=="KENYA" ~	"ES",
+      Country	=="ERITREA" ~	"ES",
+      Country	=="ETHIOPIA" ~	"ES",
+      Country	=="SOUTH SUDAN" ~	"ES",
+      Country	=="UGANDA" ~	"ES",
+      Country	=="TANZANIA" ~	"ES",
+      Country	=="MALAWI" ~	"SNA",
+      Country	=="ZAMBIA" ~	"SNA",
+      Country	=="MOZAMBIQUE" ~	"SNA",
+      Country	=="ZIMBABWE" ~	"SNA",
+      Country	=="BOTSWANA" ~	"SNA",
+      Country	=="NAMIBIA" ~	"SNA",
+      Country	=="ESWATINI (KINGDOM)" ~	"SNA",
+      Country	=="LESOTHO(KINGDOM" ~	"SNA",
+      Country	=="MADAGASCAR" ~	"ISD",
+      Country	=="COMOROS" ~	"ISD",
+      Country	=="SEYCHELLES" ~	"ISD",
+      Country	=="MAURITIUS" ~	"ISD",
+      Country	=="CAPE VERDE" ~	"ISD",
+      Country	=="SAO TOME AND PRINCIPE" ~	"ISD"))
 
 write_xlsx(Admin, "C:/Users/TOURE/Documents/REPOSITORIES/admin/AFRO_admin _data.xlsx")
